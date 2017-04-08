@@ -33,20 +33,16 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h4 class="brand-heading">Where do you wish to travel?</h4>
+          <h4 class="brand-heading">Your Location: {{location.loc_name}}</h4>
           <div class="row">
-              <div class="input-group">
-                <input (keyup)="search()" [(ngModel)]="searchParam" type="text" class="form-control big-search-bar" placeholder="Search for...">
-                <span class="input-group-btn">
-                  <button class="btn btn-default big-search-btn" type="button">SEARCH</button>
-                </span>
-              </div><!-- /input-group -->
+              <button (click)="goToHotel(location.id)" class="btn btn-default create-new-plan">Plan your trip</button>
           </div><!-- /.row -->
           <div class="row">
             <div class="clearfix"></div>
-            <ul class="locations-dropdown">
-              <li (click)="goToPlaner(location.id)" *ngFor="let location of locations">
-                {{location.loc_name}}
+            <h4 class="brand-heading">Or choose existing</h4>
+            <ul class="plans-list">
+              <li *ngFor="let plan of plans" (click)="goToPlanSummary(plan.id)">
+                Plan {{plan.name}} {{plan.id}}
               </li>
             </ul>
           </div>

@@ -7,6 +7,9 @@ import {HttpModule, JsonpModule} from "@angular/http";
 import { AppRoutingModule }     from './app-routing.module';
 import {HomeComponent} from "./home/home.component";
 import {LocationService} from "./services/location.service";
+import {PlanerComponent} from "./planer/planer.component";
+import {PlanService} from "./services/plan.service";
+import {HotelComponent} from "./hotel/hotel.component";
 
 @NgModule({
   imports: [
@@ -18,10 +21,13 @@ import {LocationService} from "./services/location.service";
   ],
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    PlanerComponent,
+    HotelComponent
   ],
   providers: [
-    LocationService
+    LocationService,
+    PlanService
   ],
   bootstrap: [ AppComponent ]
 })

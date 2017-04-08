@@ -28,4 +28,8 @@ export class HomeComponent {
       error =>  this.errorMessage = <any>error
     );
   }
+
+  goToPlaner(id: number): void {
+    this.router.navigate(['/planer', id]);
+  }
 }

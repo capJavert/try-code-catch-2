@@ -1,55 +1,45 @@
 import { Injectable }     from '@angular/core';
 import {Http, Response, URLSearchParams, Headers} from '@angular/http';
-import { Location }           from '../models/location';
+import { Plan }           from '../models/plan';
 import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
-export class LocationService {
+export class PlanService {
   private baseUrl = 'http://rsc-harambe.azurewebsites.net/api';  // URL to web API
   private headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
   constructor (private http: Http) {}
 
-  getLocations (): Observable<Location[]> {
+  getPlans (): Observable<Plan[]> {
     let params = new URLSearchParams();
     params.set('format', 'json');
     params.set('callback', 'JSONP_CALLBACK');
 
-    return this.http.get(this.baseUrl+'/locations', params)
+    return this.http.get(this.baseUrl+'/plans', params)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  getLocation (id: number): Observable<Location[]> {
+  getPlan (id: number): Observable<Plan> {
     let params = new URLSearchParams();
     params.set('format', 'json');
     params.set('callback', 'JSONP_CALLBACK');
 
-    return this.http.get(this.baseUrl+'/locations/'+id, params)
+    return this.http.get(this.baseUrl+'/plans/'+id, params)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  getLocationByName (name: string): Observable<Location[]> {
-    let params = new URLSearchParams();
-    params.set('format', 'json');
-    params.set('callback', 'JSONP_CALLBACK');
-
-    return this.http.get(this.baseUrl+'/locations/?naziv='+name, params)
-      .map(this.extractData)
-      .catch(this.handleError);
-  }
-
-  create(name: string, location: string, date: string): any {
-    const url = this.baseUrl+'/locations';
+  create(name: string, plan: string, date: string): any {
+    const url = this.baseUrl+'/plans';
 
     return this.http
-      .post(url, JSON.stringify({action: 'create', 'data': [{name: name, location: location, date: date}]}), {headers: this.headers})
+      .post(url, JSON.stringify({action: 'create', 'data': [{name: name, plan: plan, date: date}]}), {headers: this.headers})
       .toPromise()
       .catch(this.handleError);
   }
 
   remove(id: number): any {
-    const url = this.baseUrl+'/locations/'+id;
+    const url = this.baseUrl+'/plans/'+id;
 
     return this.http
       .delete(url, {headers: this.headers})
@@ -57,13 +47,13 @@ export class LocationService {
       .catch(this.handleError);
   }
 
-  update(location: Location): any {
-    const url = this.baseUrl+'/locations';
+  update(plan: Plan): any {
+    const url = this.baseUrl+'/plans';
 
     return this.http
-      .post(url, JSON.stringify({action: 'update', 'data': [location]}), {headers: this.headers})
+      .post(url, JSON.stringify({action: 'update', 'data': [plan]}), {headers: this.headers})
       .toPromise()
-      .then(() => location)
+      .then(() => plan)
       .catch(this.handleError);
   }
 
