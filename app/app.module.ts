@@ -16,9 +16,14 @@ import {TransportService} from "./services/transport.service";
 import {ActivityComponent} from "./activities/activity.component";
 import {ActivityService} from "./services/activity.service";
 import {SummaryComponent} from "./summary/summary.component";
+import {FacebookLoginComponent} from "./facebook-login/facebook-login.component";
+import {FacebookModule} from "ng2-facebook-sdk";
+import {LoginService} from "./services/login.service";
+import {PlanComponent} from "./summary/plan.component";
 
 @NgModule({
   imports: [
+    FacebookModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -32,14 +37,17 @@ import {SummaryComponent} from "./summary/summary.component";
     HotelComponent,
     TransportComponent,
     ActivityComponent,
-    SummaryComponent
+    SummaryComponent,
+    FacebookLoginComponent,
+    PlanComponent
   ],
   providers: [
     LocationService,
     PlanService,
     HotelService,
     TransportService,
-    ActivityService
+    ActivityService,
+    LoginService
   ],
   bootstrap: [ AppComponent ]
 })

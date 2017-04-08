@@ -6,6 +6,8 @@ import {HotelComponent} from "./hotel/hotel.component";
 import {TransportComponent} from "./transport/transport.component";
 import {ActivityComponent} from "./activities/activity.component";
 import {SummaryComponent} from "./summary/summary.component";
+import {FacebookLoginComponent} from "./facebook-login/facebook-login.component";
+import {PlanComponent} from "./summary/plan.component";
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home',  component: HomeComponent },
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'planer/transport/:id',  component: TransportComponent },
   { path: 'planer/activities/:id',  component: ActivityComponent },
   { path: 'summary',  component: SummaryComponent },
+  { path: 'plan/:id',  component: PlanComponent },
+  { path: 'login',  component: FacebookLoginComponent },
 ];
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],

@@ -18,7 +18,7 @@
           <a href="#page-top"></a>
         </li>
         <li>
-          <a class="page-scroll" href="/login">Sign in</a>
+          <a class="page-scroll" href="/login">Howdy, Tino</a>
         </li>
       </ul>
     </div>
@@ -71,15 +71,17 @@
         <li><i class="fa-li fa fa-clock-o"></i>{{transport.duration}} hours</li>
       </ul>
       <hr />
-      <h3>Your Activities</h3>
-      <div *ngFor="let planActivity of newActivities" class="activity-list-item">
-        <ul class="fa-ul hotel-box-item">
-          <li><i class="fa-li fa fa-tag"></i>{{planActivity.activity_name}} hours</li>
-          <li><i class="fa-li fa fa-clock-o"></i>{{planActivity.duration}} hours</li>
-          <li><i class="fa-li fa fa-file-text"></i>
-            <span class="activity-description">{{planActivity.activity_description}}</span>
-          </li>
-        </ul>
+      <div *ngIf="newActivities.length > 0">
+        <h3>Your Activities</h3>
+        <div *ngFor="let planActivity of newActivities" class="activity-list-item">
+          <ul class="fa-ul hotel-box-item">
+            <li><i class="fa-li fa fa-tag"></i>{{planActivity.activity_name}} hours</li>
+            <li><i class="fa-li fa fa-clock-o"></i>{{planActivity.duration}} hours</li>
+            <li><i class="fa-li fa fa-file-text"></i>
+              <span class="activity-description">{{planActivity.activity_description}}</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <button *ngIf="isSubmited == false" (click)="createPlan()" class="btn btn-success summary-confirm-button col-lg-8 col-lg-offset-2">Save your plan</button>

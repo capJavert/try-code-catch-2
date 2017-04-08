@@ -58,11 +58,11 @@ export class PlanerComponent implements OnInit{
   }
 
   goToPlanSummary(id: number): void {
-    this.router.navigate(['/summary', id]);
+    this.router.navigate(['/plan', id]);
   }
 
   goToHotel(id: number): void {
-    plan.plan_name = "My summer vacation";
+    plan.plan_name = "Sweet 16";
     this.router.navigate(['/planer/hotel', id]);
   }
 }
