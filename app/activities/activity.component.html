@@ -40,18 +40,35 @@
       <div class="progress-bar progress-bar-success progress-bar-passed" style="width: 25%">
         <div>Transport <i class="fa fa-check"></i></div>
       </div>
-      <div class="progress-bar progress-bar-success" style="width: 25%">
+      <div *ngIf="selectedActivities.length == 0" class="progress-bar progress-bar-success" style="width: 25%">
         <div>Activities <i class="fa fa-circle"></i></div>
       </div>
+      <div *ngIf="selectedActivities.length > 0" class="progress-bar progress-bar-passed" style="width: 25%">
+        <div>Activities <i class="fa fa-check"></i></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div (click)="goToSummary()" *ngIf="selectedActivities.length > 0" class="progress-bar progress-bar-success summary-button" style="width: 25%">
+      <div>Plan summary <i class="fa fa-file"></i></div>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-12">
       <h2 style="margin-top: 20px;">Select activities</h2>
-
       <ul class="hotel-box">
-        <li class="col-md-4 hotel" *ngFor="let activity of activities" (click)="goToActivities(activity.end_id)">
-          <div class="hotel-inner">
+        <li class="col-md-4 hotel" *ngFor="let activity of activities">
+          <div class="hotel-inner selected-activity" *ngIf="isSelected(activity.id) == true"
+               (click)="deselectActivity(activity.id)">
+            <div class="activity-header"><i class="fa fa-tag"></i>{{activity.activity_name}}</div>
+            <ul class="fa-ul hotel-box-item">
+              <li><i class="fa-li fa fa-clock-o"></i>{{activity.duration}} hours</li>
+              <li><i class="fa-li fa fa-file-text"></i>
+                <span class="activity-description">{{activity.activity_description}}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="hotel-inner" *ngIf="isSelected(activity.id) == false" (click)="selectActivity(activity.id)">
             <div class="activity-header"><i class="fa fa-tag"></i>{{activity.activity_name}}</div>
             <ul class="fa-ul hotel-box-item">
               <li><i class="fa-li fa fa-clock-o"></i>{{activity.duration}} hours</li>

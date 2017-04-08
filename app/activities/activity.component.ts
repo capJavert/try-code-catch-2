@@ -15,7 +15,7 @@ export class ActivityComponent {
   title = 'Transport';
   activities: Activity[];
   errorMessage: any;
-  arr = Array;
+  selectedActivities: number[];
 
   constructor(
     private service: ActivityService,
@@ -31,9 +31,32 @@ export class ActivityComponent {
           error =>  this.errorMessage = <any>error
         );
       });
+
+    this.selectedActivities = [];
   }
 
-  goToActivities(id: number): void {
-    this.router.navigate(['/planer/summary', id]);
+  selectActivity(id: number) {
+    for(let activity of this.activities) {
+      if(activity.id == id) {
+        this.selectedActivities.push(activity.id);
+      }
+    }
+  }
+
+  deselectActivity(id: number) {
+    for(let aid of this.selectedActivities) {
+      if(aid == id) {
+        let index = this.selectedActivities.indexOf(aid);
+        this.selectedActivities.splice(index, 1);
+      }
+    }
+  }
+
+  isSelected(id: number): boolean {
+    return this.selectedActivities.indexOf(id) != -1;
+  }
+
+  goToSummary(): void {
+    this.router.navigate(['/planer/summary']);
   }
 }
