@@ -29,7 +29,7 @@ export class PlanService {
       .catch(this.handleError);
   }
 
-  create(plan_name: string, transport_id: number, hotel_id: number): any {
+  create(plan_name: string, transport_id: number, hotel_id: number): Observable<Plan[]> {
     const url = this.baseUrl+'/plans';
 
     return this.http
@@ -37,9 +37,25 @@ export class PlanService {
         {
           plan_name: plan_name,
           transport_id: transport_id,
-          hotel_id: hotel_id}),
-          {headers: this.headers}
-        )
+          hotel_id: hotel_id
+        }),
+        {headers: this.headers}
+      )
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  addActivity(pid: number, aid: number): any {
+    const url = this.baseUrl+'/planactivities';
+
+    return this.http
+      .post(url, JSON.stringify(
+        {
+          pid: pid,
+          aid: aid
+        }),
+        {headers: this.headers}
+      )
       .toPromise()
       .catch(this.handleError);
   }

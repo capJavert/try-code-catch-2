@@ -84,16 +84,27 @@ export class SummaryComponent {
         error =>  this.errorMessage = <any>error
       );
     }
-
-    console.debug(this.newActivities)
   }
 
   createPlan(): void {
     this.service.create(plan.plan_name, plan.transport_id, plan.hotel_id)
-      .then(() => {
-        console.debug("success");
+      .subscribe(data => {
+        console.debug("success", data[0]);
+
+        let np = data[0] as Plan;
+        plan.id = np.id;
+
+        for(let act of this.newActivities) {
+          this.service.addActivity(plan.id, act.id)
+            .then(() => {
+              console.debug("success activity");
+            });
+        }
+
         this.isSubmited = true;
         window.scrollTo(0,0);
-      });
+      },
+      error =>  this.errorMessage = <any>error
+    );
   };
 }
