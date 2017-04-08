@@ -11,6 +11,8 @@ import {PlanerComponent} from "./planer/planer.component";
 import {PlanService} from "./services/plan.service";
 import {HotelComponent} from "./hotel/hotel.component";
 import {HotelService} from "./services/hotel.service";
+import {TransportComponent} from "./transport/transport.component";
+import {TransportService} from "./services/transport.service";
 
 @NgModule({
   imports: [
@@ -24,12 +26,14 @@ import {HotelService} from "./services/hotel.service";
     AppComponent,
     HomeComponent,
     PlanerComponent,
-    HotelComponent
+    HotelComponent,
+    TransportComponent
   ],
   providers: [
     LocationService,
     PlanService,
-    HotelService
+    HotelService,
+    TransportService
   ],
   bootstrap: [ AppComponent ]
 })

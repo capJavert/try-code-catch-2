@@ -3,5 +3,7 @@ export class Transport {
   transport_type: string;
   start_id: number;
   end_id: number;
-  duratuin: number;
+  duration: number;
+  start_name: string;
+  end_name: string;
 }

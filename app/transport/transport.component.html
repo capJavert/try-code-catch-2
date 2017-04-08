@@ -34,11 +34,11 @@
       <div class="progress-bar progress-bar-success progress-bar-passed" style="width: 25%">
         <div>Location <i class="fa fa-check"></i></div>
       </div>
-      <div class="progress-bar progress-bar-success" style="width: 25%">
-        <div>Hotel <i class="fa fa-circle"></i></div>
+      <div class="progress-bar progress-bar-success progress-bar-passed" style="width: 25%">
+        <div>Hotel <i class="fa fa-check"></i></div>
       </div>
-      <div class="progress-bar progress-bar-striped" style="width: 25%">
-        <div>Transport</div>
+      <div class="progress-bar progress-bar-success" style="width: 25%">
+        <div>Transport <i class="fa fa-circle"></i></div>
       </div>
       <div class="progress-bar progress-bar-striped" style="width: 25%">
         <div>Activities</div>
@@ -47,18 +47,18 @@
   </div>
   <div class="row">
     <div class="col-lg-12">
-      <h2 style="margin-top: 20px;">Pick a Hotel</h2>
+      <h2 style="margin-top: 20px;">Pick a means Transport</h2>
 
       <ul class="hotel-box">
-        <li class="col-md-4 hotel" *ngFor="let hotel of hotels" (click)="goToTransport(hotel.loc_id)">
+        <li class="col-md-4 hotel" *ngFor="let transport of transports" (click)="goToActivities(transport.end_id)">
           <div class="hotel-inner">
-            <img src="../../assets/img/hotel-placeholder.jpg" />
+            <img *ngIf="transport.transport_type == 'AIRPLANE'" src="../../assets/img/airplane-placeholder.jpg" />
+            <img *ngIf="transport.transport_type == 'BUS'" src="../../assets/img/bus-placeholder.jpg" />
+            <img *ngIf="transport.transport_type == 'TRAIN'" src="../../assets/img/train-placeholder.jpg" />
             <ul class="fa-ul hotel-box-item">
-              <li><i class="fa-li fa fa-institution"></i>{{hotel.hotel_name}}</li>
-              <li><i class="fa-li fa fa-home"></i>{{hotel.hotel_address}}</li>
-              <li><i class="fa-li fa fa-rating"></i>
-                <i class="fa fa-star" *ngFor="let i of arr(hotel.stars).fill(1)"></i>
-              </li>
+              <li><i class="fa-li fa fa-home"></i>Zagreb</li>
+              <li><i class="fa-li fa fa-plane"></i>{{transport.end_name}}</li>
+              <li><i class="fa-li fa fa-clock-o"></i>{{transport.duration}} hours</li>
             </ul>
           </div>
         </li>

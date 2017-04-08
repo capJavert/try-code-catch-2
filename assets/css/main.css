@@ -138,6 +138,10 @@ body {
   border-right: 5px solid #fff;
 }
 
+.progress-bar-passed {
+  background-color: #4cae4c !important;
+}
+
 .progress {
   height: 50px !important;
 }
@@ -151,14 +155,23 @@ body {
 }
 
 .hotel {
-  padding-bottom: 10px;
-  border-bottom: 2px solid #eeeeee;
   cursor: pointer;
 }
 
-.hotel:hover {
-  box-shadow: 5px 5px 5px #eee;
-  border-bottom: 2px solid #fff;
+.hotel:hover img {
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.hotel:hover .hotel-inner {
+  border-bottom: 1px solid #ef6c00;
+}
+
+.hotel-inner {
+  overflow: hidden;
+  border: 1px solid #eee;
+  padding-bottom: 10px;
 }
 
 .hotel-box {
@@ -174,6 +187,7 @@ body {
 
 .hotel-box img {
   width: 100%;
+  transition: all 0.3s;
 }
 
 .hotel-box-item {
