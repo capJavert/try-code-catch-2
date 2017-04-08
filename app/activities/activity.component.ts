@@ -4,10 +4,11 @@ import '../rxjs-operators';
 import {Transport} from "../models/transport";
 import {ActivityService} from "../services/activity.service";
 import {Activity} from "../models/activity";
+import {activities} from "../plan-session";
 
 @Component({
   moduleId: module.id,
-  selector: 'transport',
+  selector: 'activity',
   templateUrl: 'activity.component.html',
   styleUrls: ['activity.component.css']
 })
@@ -38,18 +39,22 @@ export class ActivityComponent {
   selectActivity(id: number) {
     for(let activity of this.activities) {
       if(activity.id == id) {
-        this.selectedActivities.push(activity.id);
+        activities.push(activity.id);
       }
     }
+
+    this.selectedActivities = activities;
   }
 
   deselectActivity(id: number) {
     for(let aid of this.selectedActivities) {
       if(aid == id) {
         let index = this.selectedActivities.indexOf(aid);
-        this.selectedActivities.splice(index, 1);
+        activities.splice(index, 1);
       }
     }
+
+    this.selectedActivities = activities;
   }
 
   isSelected(id: number): boolean {
@@ -57,6 +62,6 @@ export class ActivityComponent {
   }
 
   goToSummary(): void {
-    this.router.navigate(['/planer/summary']);
+    this.router.navigate(['/summary']);
   }
 }

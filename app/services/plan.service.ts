@@ -29,11 +29,17 @@ export class PlanService {
       .catch(this.handleError);
   }
 
-  create(name: string, plan: string, date: string): any {
+  create(plan_name: string, transport_id: number, hotel_id: number): any {
     const url = this.baseUrl+'/plans';
 
     return this.http
-      .post(url, JSON.stringify({action: 'create', 'data': [{name: name, plan: plan, date: date}]}), {headers: this.headers})
+      .post(url, JSON.stringify(
+        {
+          plan_name: plan_name,
+          transport_id: transport_id,
+          hotel_id: hotel_id}),
+          {headers: this.headers}
+        )
       .toPromise()
       .catch(this.handleError);
   }

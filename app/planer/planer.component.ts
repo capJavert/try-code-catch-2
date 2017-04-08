@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import '../rxjs-operators';
 import {Plan} from "../models/plan";
 import {PlanService} from "../services/plan.service";
 import {Location} from "../models/location";
 import {LocationService} from "../services/location.service";
+import {plan} from "../plan-session";
 
 @Component({
   moduleId: module.id,
@@ -57,10 +58,11 @@ export class PlanerComponent implements OnInit{
   }
 
   goToPlanSummary(id: number): void {
-    this.router.navigate(['/planer/summary', id]);
+    this.router.navigate(['/summary', id]);
   }
 
   goToHotel(id: number): void {
+    plan.plan_name = "My summer vacation";
     this.router.navigate(['/planer/hotel', id]);
   }
 }

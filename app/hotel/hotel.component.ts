@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import '../rxjs-operators';
 import {Hotel} from "../models/hotel";
 import {HotelService} from "../services/hotel.service";
+import {plan} from "../plan-session";
 
 @Component({
   moduleId: module.id,
@@ -15,6 +16,7 @@ export class HotelComponent {
   hotels: Hotel[];
   errorMessage: any;
   arr = Array;
+  locationId: number;
 
   constructor(
     private service: HotelService,
@@ -23,6 +25,8 @@ export class HotelComponent {
   ) {
     this.route.params.subscribe(
       params => {
+        this.locationId = +params["id"];
+
         this.service.getHotelsByLocation(+params["id"]).subscribe(
           data => this.hotels = data,
           error =>  this.errorMessage = <any>error
@@ -31,6 +35,7 @@ export class HotelComponent {
   }
 
   goToTransport(id: number): void {
-    this.router.navigate(['/planer/transport', id]);
+    plan.hotel_id = id;
+    this.router.navigate(['/planer/transport', this.locationId]);
   }
 }

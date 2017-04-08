@@ -50,7 +50,7 @@
       <h2 style="margin-top: 20px;">Pick a Hotel</h2>
 
       <ul class="hotel-box">
-        <li class="col-md-4 hotel" *ngFor="let hotel of hotels" (click)="goToTransport(hotel.loc_id)">
+        <li class="col-md-4 hotel" *ngFor="let hotel of hotels" (click)="goToTransport(hotel.id)">
           <div class="hotel-inner">
             <img src="../../assets/img/hotel-placeholder.jpg" />
             <ul class="fa-ul hotel-box-item">

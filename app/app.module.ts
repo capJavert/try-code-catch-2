@@ -15,6 +15,7 @@ import {TransportComponent} from "./transport/transport.component";
 import {TransportService} from "./services/transport.service";
 import {ActivityComponent} from "./activities/activity.component";
 import {ActivityService} from "./services/activity.service";
+import {SummaryComponent} from "./summary/summary.component";
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import {ActivityService} from "./services/activity.service";
     PlanerComponent,
     HotelComponent,
     TransportComponent,
-    ActivityComponent
+    ActivityComponent,
+    SummaryComponent
   ],
   providers: [
     LocationService,

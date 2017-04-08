@@ -5,6 +5,7 @@ import {Transport} from "../models/transport";
 import {TransportService} from "../services/transport.service";
 import {LocationService} from "../services/location.service";
 import {Location} from "../models/location";
+import {plan} from "../plan-session";
 
 @Component({
   moduleId: module.id,
@@ -17,6 +18,7 @@ export class TransportComponent {
   transports: Transport[];
   errorMessage: any;
   arr = Array;
+  locationId: number;
 
   constructor(
     private service: TransportService,
@@ -28,6 +30,7 @@ export class TransportComponent {
       params => {
         this.service.getTransportsByLocation(+params["id"]).subscribe(
           data => {
+            this.locationId = +params["id"];
             this.transports = data;
 
             for(let transport of this.transports) {
@@ -46,6 +49,7 @@ export class TransportComponent {
   }
 
   goToActivities(id: number): void {
-    this.router.navigate(['/planer/activities', id]);
+    plan.transport_id = id;
+    this.router.navigate(['/planer/activities', this.locationId]);
   }
 }

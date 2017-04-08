@@ -233,6 +233,17 @@ body {
   font-size: 16px;
 }
 
+.summary-card {
+  background-color: #ffcc80;
+}
+
+.summary-confirm-button {
+  margin-bottom: 40px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  font-size: 24px;
+}
+
 @media(max-width:768px) {
 	.content-section img {
 		width: 98%;

@@ -50,7 +50,7 @@
       <h2 style="margin-top: 20px;">Pick a means Transport</h2>
 
       <ul class="hotel-box">
-        <li class="col-md-4 hotel" *ngFor="let transport of transports" (click)="goToActivities(transport.end_id)">
+        <li class="col-md-4 hotel" *ngFor="let transport of transports" (click)="goToActivities(transport.id)">
           <div class="hotel-inner">
             <img *ngIf="transport.transport_type == 'AIRPLANE'" src="../../assets/img/airplane-placeholder.jpg" />
             <img *ngIf="transport.transport_type == 'BUS'" src="../../assets/img/bus-placeholder.jpg" />

@@ -1,6 +1,6 @@
 export class Plan {
   id: number;
-  name: string;
+  plan_name: string;
   hotel_id: number;
   transport_id: number;
 }

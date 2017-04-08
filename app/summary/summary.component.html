@@ -1,0 +1,90 @@
+<!-- Navigation -->
+<nav class="navbar navbar-custom navbar-fixed-top dark-navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+        <i style="color:#ffffff;" class="fa fa-bars"></i>
+      </button>
+      <a class="navbar-brand page-scroll" href="#page-top">
+        <span class="light">Travelco</span>
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+      <ul class="nav navbar-nav">
+        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+        <li class="hidden">
+          <a href="#page-top"></a>
+        </li>
+        <li>
+          <a class="page-scroll" href="/login">Sign in</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+
+<div class="clearfix" style="margin-top: 100px;"></div>
+<section class="container content-section text-center plan-checkout">
+  <div class="row">
+    <div class="progress">
+      <div class="progress-bar progress-bar-success progress-bar-passed" style="width: 25%">
+        <div>Location <i class="fa fa-check"></i></div>
+      </div>
+      <div class="progress-bar progress-bar-success progress-bar-passed" style="width: 25%">
+        <div>Hotel <i class="fa fa-check"></i></div>
+      </div>
+      <div class="progress-bar progress-bar-success progress-bar-passed" style="width: 25%">
+        <div>Transport <i class="fa fa-check"></i></div>
+      </div>
+      <div class="progress-bar progress-bar-passed" style="width: 25%">
+        <div>Activities <i class="fa fa-check"></i></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <button *ngIf="isSubmited == true" (click)="createPlan()" class="btn btn-success summary-confirm-button col-lg-12">Your plan is saved, good luck on your travel!</button>
+  </div>
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 summary-card">
+      <h2 style="margin-top: 20px;">Plan Summary</h2>
+      <hr />
+      <h3 style="margin-top: 20px;">{{newPlan.plan_name}}</h3>
+      <h3 style="margin-top: 20px;">Traveling to {{location.loc_name}}</h3>
+      <hr />
+      <h3>Hotel</h3>
+      <ul class="fa-ul hotel-box-item">
+        <li><i class="fa-li fa fa-institution"></i>{{hotel.hotel_name}}</li>
+        <li><i class="fa-li fa fa-home"></i>{{hotel.hotel_address}}</li>
+        <li><i class="fa-li fa fa-rating"></i>
+          <i class="fa fa-star" *ngFor="let i of arr(hotel.stars).fill(1)"></i>
+        </li>
+      </ul>
+      <hr />
+      <h3>Transportation</h3>
+      <ul class="fa-ul hotel-box-item">
+        <li><i class="fa-li fa fa-home"></i>Zagreb</li>
+        <li><i class="fa-li fa fa-plane"></i>{{transport.end_name}}</li>
+        <li><i class="fa-li fa fa-clock-o"></i>{{transport.duration}} hours</li>
+      </ul>
+      <hr />
+      <h3>Your Activities</h3>
+      <div *ngFor="let planActivity of newActivities" class="activity-list-item">
+        <ul class="fa-ul hotel-box-item">
+          <li><i class="fa-li fa fa-tag"></i>{{planActivity.activity_name}} hours</li>
+          <li><i class="fa-li fa fa-clock-o"></i>{{planActivity.duration}} hours</li>
+          <li><i class="fa-li fa fa-file-text"></i>
+            <span class="activity-description">{{planActivity.activity_description}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button *ngIf="isSubmited == false" (click)="createPlan()" class="btn btn-success summary-confirm-button col-lg-8 col-lg-offset-2">Save your plan</button>
+  </div>
+  <br />
+  <br />
+</section>
+
