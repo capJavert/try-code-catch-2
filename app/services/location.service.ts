@@ -1,36 +1,46 @@
 import { Injectable }     from '@angular/core';
 import {Http, Response, URLSearchParams, Headers} from '@angular/http';
-import { Event }           from './event';
+import { Location }           from '../models/location';
 import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
-export class EventService {
-  private eventsUrl = 'http://rsc-harambe.azurewebsites.net/api';  // URL to web API
+export class LocationService {
+  private baseUrl = 'http://rsc-harambe.azurewebsites.net/api';  // URL to web API
   private headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
   constructor (private http: Http) {}
 
-  getEvents (): Observable<Event[]> {
+  getLocations (): Observable<Location[]> {
     let params = new URLSearchParams();
     params.set('format', 'json');
     params.set('callback', 'JSONP_CALLBACK');
 
-    return this.http.get(this.eventsUrl+'/events', params)
+    return this.http.get(this.baseUrl+'/locations', params)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  getEvent (id: number): Observable<Event> {
+  getLocation (id: number): Observable<Location> {
     let params = new URLSearchParams();
     params.set('format', 'json');
     params.set('callback', 'JSONP_CALLBACK');
 
-    return this.http.get(this.eventsUrl+'/events/'+id, params)
+    return this.http.get(this.baseUrl+'/locations/'+id, params)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getLocationByName (name: string): Observable<Location[]> {
+    let params = new URLSearchParams();
+    params.set('format', 'json');
+    params.set('callback', 'JSONP_CALLBACK');
+
+    return this.http.get(this.baseUrl+'/locations/'+name, params)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   create(name: string, location: string, date: string): any {
-    const url = this.eventsUrl+'/events';
+    const url = this.baseUrl+'/locations';
 
     return this.http
       .post(url, JSON.stringify({action: 'create', 'data': [{name: name, location: location, date: date}]}), {headers: this.headers})
@@ -39,7 +49,7 @@ export class EventService {
   }
 
   remove(id: number): any {
-    const url = this.eventsUrl+'/events/'+id;
+    const url = this.baseUrl+'/locations/'+id;
 
     return this.http
       .delete(url, {headers: this.headers})
@@ -47,18 +57,21 @@ export class EventService {
       .catch(this.handleError);
   }
 
-  update(event: Event): any {
-    const url = this.eventsUrl+'/events';
+  update(location: Location): any {
+    const url = this.baseUrl+'/locations';
 
     return this.http
-      .post(url, JSON.stringify({action: 'update', 'data': [event]}), {headers: this.headers})
+      .post(url, JSON.stringify({action: 'update', 'data': [location]}), {headers: this.headers})
       .toPromise()
-      .then(() => event)
+      .then(() => location)
       .catch(this.handleError);
   }
 
   private extractData(res: Response) {
     let body = res.json();
+
+    console.debug("BODY", body);
+
     return body || { };
   }
 
