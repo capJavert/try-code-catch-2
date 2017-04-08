@@ -10,6 +10,7 @@ import {LocationService} from "./services/location.service";
 import {PlanerComponent} from "./planer/planer.component";
 import {PlanService} from "./services/plan.service";
 import {HotelComponent} from "./hotel/hotel.component";
+import {HotelService} from "./services/hotel.service";
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import {HotelComponent} from "./hotel/hotel.component";
   ],
   providers: [
     LocationService,
-    PlanService
+    PlanService,
+    HotelService
   ],
   bootstrap: [ AppComponent ]
 })

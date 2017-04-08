@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-custom navbar-fixed-top dark-navbar" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
@@ -27,26 +27,40 @@
   <!-- /.container -->
 </nav>
 
-<section id="joggling" class="container content-section text-center">
+<div class="clearfix" style="margin-top: 100px;"></div>
+<section class="container content-section text-center plan-checkout">
   <div class="row">
     <div class="progress">
       <div class="progress-bar progress-bar-success" style="width: 25%">
-        <span>Location</span>
+        <div>Location <i class="fa fa-check"></i></div>
       </div>
       <div class="progress-bar progress-bar-success" style="width: 25%">
-        <span>Hotel</span>
+        <div>Hotel <i class="fa fa-check"></i></div>
       </div>
       <div class="progress-bar progress-bar-striped" style="width: 25%">
-        <span>Transport</span>
+        <div>Transport</div>
       </div>
       <div class="progress-bar progress-bar-striped" style="width: 25%">
-        <span>Activities</span>
+        <div>Activities</div>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
-      <h2>Pick a Hotel</h2>
+    <div class="col-lg-12">
+      <h2 style="margin-top: 20px;">Pick a Hotel</h2>
+
+      <ul class="hotel-box">
+        <li class="col-md-4 hotel" *ngFor="let hotel of hotels" (click)="goToTransport(hotel.loc_id)">
+          <img src="../../assets/img/hotel-placeholder.jpg" />
+          <ul class="fa-ul hotel-box-item">
+            <li><i class="fa-li fa fa-institution"></i>{{hotel.hotel_name}}</li>
+            <li><i class="fa-li fa fa-home"></i>{{hotel.hotel_address}}</li>
+            <li><i class="fa-li fa fa-rating"></i>
+              <i class="fa fa-star" *ngFor="let i of arr(hotel.stars).fill(1)"></i>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
 </section>

@@ -22,7 +22,7 @@ export class HomeComponent {
   ) { }
 
   public search(): void {
-    console.debug("search()", this.searchParam);
+    console.debug("search()");
       this.service.getLocationByName(this.searchParam).subscribe(
       locations => this.locations = locations,
       error =>  this.errorMessage = <any>error

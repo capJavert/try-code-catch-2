@@ -117,6 +117,78 @@ body {
   border: 0;
 }
 
+.plan-checkout {
+  text-align: left;
+}
+
+.progress-bar-success {
+  background-color: #ef6c00 !important;
+  border-right: 5px solid #fff;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.progress {
+  display: block;
+}
+
+.progress-bar-striped {
+  background-color: #5e5e5e !important;
+  border-right: 5px solid #fff;
+}
+
+.progress {
+  height: 50px !important;
+}
+
+.progress-bar div {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.hotel {
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eeeeee;
+  cursor: pointer;
+}
+
+.hotel:hover {
+  box-shadow: 5px 5px 5px #eee;
+  border-bottom: 2px solid #fff;
+}
+
+.hotel-box {
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.hotel-box > li {
+  font-size: 28px;
+  background: #fff;
+}
+
+.hotel-box img {
+  width: 100%;
+}
+
+.hotel-box-item {
+  margin-top: 15px;
+}
+
+.li {
+  margin-left: 40px;
+}
+
+.fa-star {
+  margin-right: 10px;
+  color: #ffe900;
+}
+
 @media(max-width:768px) {
 	.content-section img {
 		width: 98%;

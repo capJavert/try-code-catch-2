@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'home',  component: HomeComponent },
   { path: 'planer/:id',  component: PlanerComponent },
   { path: 'planer/hotel/:id',  component: HotelComponent },
+  //{ path: 'planer/transport/:id',  component: TransportComponent },
 ];
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
