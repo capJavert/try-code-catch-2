@@ -40,7 +40,7 @@ export class PlanService {
       .catch(this.handleError);
   }
 
-  create(plan_name: string, transport_id: number, hotel_id: number): Observable<Plan[]> {
+  create(plan_name: string, transport_id: number, hotel_id: number, user_id: number): Observable<Plan[]> {
     const url = this.baseUrl+'/plans';
 
     return this.http
@@ -48,7 +48,8 @@ export class PlanService {
         {
           plan_name: plan_name,
           transport_id: transport_id,
-          hotel_id: hotel_id
+          hotel_id: hotel_id,
+          user_id: user_id
         }),
         {headers: this.headers}
       )

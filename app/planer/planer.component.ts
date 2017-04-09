@@ -5,7 +5,8 @@ import {Plan} from "../models/plan";
 import {PlanService} from "../services/plan.service";
 import {Location} from "../models/location";
 import {LocationService} from "../services/location.service";
-import {plan} from "../plan-session";
+import {plan, user} from "../plan-session";
+import {WebUser} from "../models/user";
 
 @Component({
   moduleId: module.id,
@@ -19,6 +20,8 @@ export class PlanerComponent implements OnInit{
   errorMessage: any;
   searchParam: string = "";
   location: Location;
+  planName: string;
+  user: WebUser;
 
   constructor(
     private service: PlanService,
@@ -26,6 +29,8 @@ export class PlanerComponent implements OnInit{
     private router: Router,
     private route: ActivatedRoute,
   ) {
+    this.user = user;
+    this.planName = "My new travel plan";
     this.location = new Location();
 
     this.route.params.subscribe(
@@ -62,7 +67,7 @@ export class PlanerComponent implements OnInit{
   }
 
   goToHotel(id: number): void {
-    plan.plan_name = "Sweet 16";
+    plan.plan_name = this.planName;
     this.router.navigate(['/planer/hotel', id]);
   }
 }

@@ -4,7 +4,8 @@ import '../rxjs-operators';
 import {Transport} from "../models/transport";
 import {ActivityService} from "../services/activity.service";
 import {Activity} from "../models/activity";
-import {activities} from "../plan-session";
+import {activities, user} from "../plan-session";
+import {WebUser} from "../models/user";
 
 @Component({
   moduleId: module.id,
@@ -17,12 +18,14 @@ export class ActivityComponent {
   activities: Activity[];
   errorMessage: any;
   selectedActivities: number[];
+  user: WebUser;
 
   constructor(
     private service: ActivityService,
     private router: Router,
     private route: ActivatedRoute
   ) {
+    this.user = user;
     this.route.params.subscribe(
       params => {
         this.service.getActivities().subscribe(

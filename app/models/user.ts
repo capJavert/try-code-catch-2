@@ -1,7 +1,9 @@
 import {Plan} from "./Plan";
-export class User {
+
+export class WebUser {
   id: number;
   ime: string;
   email: string;
-  plans: Plan[]
+  plans: Plan[];
+  redirect: string = "";
 }

@@ -3,7 +3,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import '../rxjs-operators';
 import {Hotel} from "../models/hotel";
 import {HotelService} from "../services/hotel.service";
-import {plan} from "../plan-session";
+import {plan, user} from "../plan-session";
+import {WebUser} from "../models/user";
 
 @Component({
   moduleId: module.id,
@@ -17,12 +18,14 @@ export class HotelComponent {
   errorMessage: any;
   arr = Array;
   locationId: number;
+  user: WebUser;
 
   constructor(
     private service: HotelService,
     private router: Router,
     private route: ActivatedRoute
   ) {
+    this.user = user;
     this.route.params.subscribe(
       params => {
         this.locationId = +params["id"];

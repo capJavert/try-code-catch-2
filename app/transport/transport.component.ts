@@ -5,7 +5,8 @@ import {Transport} from "../models/transport";
 import {TransportService} from "../services/transport.service";
 import {LocationService} from "../services/location.service";
 import {Location} from "../models/location";
-import {plan} from "../plan-session";
+import {plan, user} from "../plan-session";
+import {WebUser} from "../models/user";
 
 @Component({
   moduleId: module.id,
@@ -19,6 +20,7 @@ export class TransportComponent {
   errorMessage: any;
   arr = Array;
   locationId: number;
+  user: WebUser;
 
   constructor(
     private service: TransportService,
@@ -26,6 +28,7 @@ export class TransportComponent {
     private router: Router,
     private route: ActivatedRoute
   ) {
+    this.user = user;
     this.route.params.subscribe(
       params => {
         this.service.getTransportsByLocation(+params["id"]).subscribe(

@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import '../rxjs-operators';
 import {Plan} from "../models/plan";
 import {PlanService} from "../services/plan.service";
-import {plan, activities} from "../plan-session";
+import {plan, activities, user} from "../plan-session";
 import {HotelService} from "../services/hotel.service";
 import {ActivityService} from "../services/activity.service";
 import {TransportService} from "../services/transport.service";
@@ -12,6 +12,7 @@ import {Transport} from "../models/transport";
 import {Activity} from "../models/activity";
 import {LocationService} from "../services/location.service";
 import {Location} from "../models/location";
+import {WebUser} from "../models/user";
 
 @Component({
   moduleId: module.id,
@@ -30,6 +31,7 @@ export class PlanComponent {
   arr = Array;
   isSignedIn: boolean = true;
   isSubmited: boolean = false;
+  user: WebUser = new WebUser();
 
   constructor(
     private service: PlanService,
@@ -40,6 +42,7 @@ export class PlanComponent {
     private router: Router,
     private route: ActivatedRoute
   ) {
+    this.user = user;
     this.newPlan = new Plan();
     this.newActivities = [];
 
@@ -99,7 +102,7 @@ export class PlanComponent {
 
   createPlan(): void {
     this.newPlan.id = 0;
-    this.service.create(this.newPlan.plan_name, this.newPlan.transport_id, this.newPlan.hotel_id)
+    this.service.create(this.newPlan.plan_name, this.newPlan.transport_id, this.newPlan.hotel_id, this.user.id)
       .subscribe(data => {
           console.debug("success", data[0]);
 
@@ -119,4 +122,14 @@ export class PlanComponent {
         error =>  this.errorMessage = <any>error
       );
   };
+
+  goHome(): void {
+    this.router.navigate(["/home"]);
+  }
+
+
+  login(): void {
+    user.redirect = "plan/"+this.newPlan.id;
+    this.router.navigate(["/login"]);
+  }
 }

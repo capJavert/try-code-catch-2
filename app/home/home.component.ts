@@ -3,23 +3,28 @@ import {LocationService} from "../services/location.service";
 import {Router} from "@angular/router";
 import {Location} from "../models/location";
 import '../rxjs-operators';
+import {user} from "../plan-session";
+import {WebUser} from "../models/user";
 
 @Component({
   moduleId: module.id,
   selector: 'home',
   templateUrl: 'home.component.html',
-  styleUrls: ['home.component.css']
+  styleUrls: ['home.component.css'],
 })
 export class HomeComponent {
   title = 'Home';
   locations: Location[];
   errorMessage: any;
   searchParam: string = "";
+  user: WebUser;
 
   constructor(
     private service: LocationService,
     private router: Router
-  ) { }
+  ) {
+    this.user = user;
+  }
 
   public search(): void {
     console.debug("search()");
