@@ -37,4 +37,8 @@ export class HomeComponent {
   goToPlaner(id: number): void {
     this.router.navigate(['/planer', id]);
   }
+
+  goToStatistics(): void {
+    this.router.navigate(['/customer/statistics']);
+  }
 }

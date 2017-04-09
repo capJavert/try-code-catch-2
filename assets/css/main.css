@@ -293,6 +293,10 @@ button {
   height: 50px;
 }
 
+a {
+  cursor: pointer;
+}
+
 @media(max-width:768px) {
 	.content-section img {
 		width: 98%;
