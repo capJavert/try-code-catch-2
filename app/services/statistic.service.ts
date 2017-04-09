@@ -19,12 +19,33 @@ export class StatisticService {
       .catch(this.handleError);
   }
 
+  getHotelFoodStatistics (id: number): Observable<Statistic[]> {
+    let params = new URLSearchParams();
+    params.set('format', 'json');
+    params.set('callback', 'JSONP_CALLBACK');
+
+    return this.http.get(this.baseUrl+'/statisticsfood/'+id, params)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+
   getActivityStatistics (): Observable<Statistic[]> {
     let params = new URLSearchParams();
     params.set('format', 'json');
     params.set('callback', 'JSONP_CALLBACK');
 
     return this.http.get(this.baseUrl+'/statisticsactivities', params)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getHotelActivityStatistics (id: number): Observable<Statistic[]> {
+    let params = new URLSearchParams();
+    params.set('format', 'json');
+    params.set('callback', 'JSONP_CALLBACK');
+
+    return this.http.get(this.baseUrl+'/statisticsactivities/'+id, params)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -39,12 +60,32 @@ export class StatisticService {
       .catch(this.handleError);
   }
 
+  getHotelTransportStatistics (id: number): Observable<Statistic[]> {
+    let params = new URLSearchParams();
+    params.set('format', 'json');
+    params.set('callback', 'JSONP_CALLBACK');
+
+    return this.http.get(this.baseUrl+'/statisticstransport/'+id, params)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   getImageStatistics (): Observable<Statistic[]> {
     let params = new URLSearchParams();
     params.set('format', 'json');
     params.set('callback', 'JSONP_CALLBACK');
 
     return this.http.get(this.baseUrl+'/statisticsimages', params)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getHotelImageStatistics (id: number): Observable<Statistic[]> {
+    let params = new URLSearchParams();
+    params.set('format', 'json');
+    params.set('callback', 'JSONP_CALLBACK');
+
+    return this.http.get(this.baseUrl+'/statisticsimages/'+id, params)
       .map(this.extractData)
       .catch(this.handleError);
   }

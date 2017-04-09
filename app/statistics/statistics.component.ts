@@ -5,6 +5,8 @@ import {user} from "../plan-session";
 import {WebUser} from "../models/user";
 import {StatisticService} from "../services/statistic.service";
 import {BaseChartDirective} from "ng2-charts";
+import {HotelService} from "../services/hotel.service";
+import {Hotel} from "../models/hotel";
 
 @Component({
   moduleId: module.id,
@@ -18,6 +20,8 @@ export class StatisticsComponent {
   title = 'Statistics';
   errorMessage: any;
   user: WebUser;
+  hotels: Hotel[];
+  selectedHotelId: number = 0;
   // PolarArea
   polarAreaLegend:boolean = true;
   polarAreaChartType:string = 'pie';
@@ -39,9 +43,17 @@ export class StatisticsComponent {
 
   constructor(
     private router: Router,
-    private service: StatisticService
+    private service: StatisticService,
+    private hotelService: HotelService
   ) {
     this.user = user;
+
+    this.hotelService.getHotels().subscribe(
+      data => {
+        this.hotels = data;
+      },
+      error =>  this.errorMessage = <any>error
+    );
 
     this.mapFoodData();
     this.mapActivityData();
@@ -66,6 +78,25 @@ export class StatisticsComponent {
     );
   }
 
+  mapHotelFoodData(): void {
+    this.foodData = [];
+    this.foodLabels = [];
+
+    this.service.getHotelFoodStatistics(this.selectedHotelId).subscribe(
+      data => {
+        for(let item of data) {
+          this.foodLabels.push(item.naziv+ "(" + item.hotel_name + ")");
+          this.foodData.push(item.cnt*100);
+        }
+
+        this.updateChart();
+
+        console.debug(this.foodLabels);
+        console.debug(this.foodData);
+      },
+      error =>  this.errorMessage = <any>error
+    );
+  }
 
   mapActivityData(): void {
     this.service.getActivityStatistics().subscribe(
@@ -84,8 +115,51 @@ export class StatisticsComponent {
     );
   }
 
+  mapHotelActivityData(): void {
+    this.activityLabels = [];
+    this.activityData = [];
+
+    this.service.getHotelActivityStatistics(this.selectedHotelId).subscribe(
+      data => {
+        for(let item of data) {
+          this.activityLabels.push(item.naziv+ "(" + item.hotel_name + ")");
+          this.activityData.push(item.cnt*100);
+        }
+
+        this.updateChart();
+
+        console.debug(this.activityLabels);
+        console.debug(this.activityData);
+      },
+      error =>  this.errorMessage = <any>error
+    );
+  }
+
   mapImageData(): void {
+    this.imageLabels = [];
+    this.imageData = [];
+
     this.service.getImageStatistics().subscribe(
+      data => {
+        for(let item of data) {
+          this.imageLabels.push(item.naziv+ "(" + item.hotel_name + ")");
+          this.imageData.push(item.cnt*100);
+        }
+
+        this.updateChart();
+
+        console.debug(this.imageLabels);
+        console.debug(this.imageData);
+      },
+      error =>  this.errorMessage = <any>error
+    );
+  }
+
+  mapHotelImageData(): void {
+    this.imageLabels = [];
+    this.imageData = [];
+
+    this.service.getHotelImageStatistics(this.selectedHotelId).subscribe(
       data => {
         for(let item of data) {
           this.imageLabels.push(item.naziv+ "(" + item.hotel_name + ")");
@@ -118,10 +192,46 @@ export class StatisticsComponent {
     );
   }
 
+  mapHotelTransportData(): void {
+    this.transportLabels = [];
+    this.transportData = [];
+
+    this.service.getHotelTransportStatistics(this.selectedHotelId).subscribe(
+      data => {
+        for(let item of data) {
+          this.transportLabels.push(item.naziv+ "(" + item.hotel_name + ")");
+          this.transportData.push(item.cnt*100);
+        }
+
+        this.updateChart();
+
+        console.debug(this.transportLabels);
+        console.debug(this.transportData);
+      },
+      error =>  this.errorMessage = <any>error
+    );
+  }
+
   private updateChart(){
     console.debug(this.charts);
     for(let chart of this.charts.toArray()) {
       chart.ngOnChanges({});
+    }
+  }
+
+  selectHotel(id: number) {
+    this.selectedHotelId = id;
+
+    if(id == 0) {
+      this.mapFoodData();
+      this.mapActivityData();
+      this.mapImageData();
+      this.mapTransportData();
+    } else {
+      this.mapHotelFoodData();
+      this.mapHotelActivityData();
+      this.mapHotelImageData();
+      this.mapHotelTransportData();
     }
   }
 

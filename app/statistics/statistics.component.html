@@ -29,6 +29,14 @@
 
 <div class="clearfix" style="margin-top: 100px;"></div>
 <section class="container content-section text-center statistics-view">
+  <select class="form-control" [(ngModel)]="selectedHotelId">
+    <option (click)="selectHotel(0)" value="0">All Hotels</option>
+    <option *ngFor="let hotel of hotels" value="{{hotel.id}}"
+            (click)="selectHotel(hotel.id)">{{hotel.hotel_name}}
+    </option>
+  </select>
+  <br />
+  <br />
   <div *ngIf="foodData.length > 0" class="row">
     <h3>Food Ordering</h3>
     <div style="display: block">
