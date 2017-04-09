@@ -39,27 +39,19 @@ export class PlanerComponent implements OnInit{
           .subscribe(
             locations => {
               this.location = locations[0];
+
+              this.service.getPlansByLocation(this.location.id).subscribe(
+                data => this.plans = data,
+                error =>  this.errorMessage = <any>error
+              );
             },
             error =>  this.errorMessage = <any>error
           );
       });
-
-    this.service.getPlans().subscribe(
-      data => this.plans = data,
-      error =>  this.errorMessage = <any>error
-    );
   }
 
   ngOnInit(): void {
 
-  }
-
-  public search(): void {
-    console.debug("search()", this.searchParam);
-      this.service.getPlans().subscribe(
-      data => this.plans = data,
-      error =>  this.errorMessage = <any>error
-    );
   }
 
   goToPlanSummary(id: number): void {

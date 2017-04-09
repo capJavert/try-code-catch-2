@@ -9,16 +9,15 @@ export class PlanService {
   private headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
   constructor (private http: Http) {}
 
-  getPlansByLocation (): Observable<Plan[]> {
+  getPlansByLocation (id: number): Observable<Plan[]> {
     let params = new URLSearchParams();
     params.set('format', 'json');
     params.set('callback', 'JSONP_CALLBACK');
 
-    return this.http.get(this.baseUrl+'/plans', params)
+    return this.http.get(this.baseUrl+'/locationplans/'+id, params)
       .map(this.extractData)
       .catch(this.handleError);
   }
-
 
   getPlans (): Observable<Plan[]> {
     let params = new URLSearchParams();
