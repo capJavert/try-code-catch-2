@@ -8,6 +8,7 @@ import {ActivityComponent} from "./activities/activity.component";
 import {SummaryComponent} from "./summary/summary.component";
 import {FacebookLoginComponent} from "./facebook-login/facebook-login.component";
 import {PlanComponent} from "./summary/plan.component";
+import {StatisticsComponent} from "./statistics/statistics.component";
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home',  component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'summary',  component: SummaryComponent },
   { path: 'plan/:id',  component: PlanComponent },
   { path: 'login',  component: FacebookLoginComponent },
+  { path: 'customer/statistics',  component: StatisticsComponent },
 ];
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],

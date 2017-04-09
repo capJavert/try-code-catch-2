@@ -20,6 +20,9 @@ import {FacebookLoginComponent} from "./facebook-login/facebook-login.component"
 import {FacebookModule, FacebookService} from "ng2-facebook-sdk";
 import {UserService} from "./services/login.service";
 import {PlanComponent} from "./summary/plan.component";
+import {ChartsModule} from "ng2-charts";
+import {StatisticsComponent} from "./statistics/statistics.component";
+import {StatisticService} from "./services/statistic.service";
 
 @NgModule({
   imports: [
@@ -29,6 +32,7 @@ import {PlanComponent} from "./summary/plan.component";
     HttpModule,
     JsonpModule,
     AppRoutingModule,
+    ChartsModule
   ],
   declarations: [
     AppComponent,
@@ -39,7 +43,8 @@ import {PlanComponent} from "./summary/plan.component";
     ActivityComponent,
     SummaryComponent,
     FacebookLoginComponent,
-    PlanComponent
+    PlanComponent,
+    StatisticsComponent
   ],
   providers: [
     LocationService,
@@ -48,7 +53,8 @@ import {PlanComponent} from "./summary/plan.component";
     TransportService,
     ActivityService,
     FacebookService,
-    UserService
+    UserService,
+    StatisticService
   ],
   bootstrap: [ AppComponent ]
 })
