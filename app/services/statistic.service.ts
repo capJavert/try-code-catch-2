@@ -19,6 +19,36 @@ export class StatisticService {
       .catch(this.handleError);
   }
 
+  getActivityStatistics (): Observable<Statistic[]> {
+    let params = new URLSearchParams();
+    params.set('format', 'json');
+    params.set('callback', 'JSONP_CALLBACK');
+
+    return this.http.get(this.baseUrl+'/statisticsactivities', params)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getTransportStatistics (): Observable<Statistic[]> {
+    let params = new URLSearchParams();
+    params.set('format', 'json');
+    params.set('callback', 'JSONP_CALLBACK');
+
+    return this.http.get(this.baseUrl+'/statisticstransport', params)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getImageStatistics (): Observable<Statistic[]> {
+    let params = new URLSearchParams();
+    params.set('format', 'json');
+    params.set('callback', 'JSONP_CALLBACK');
+
+    return this.http.get(this.baseUrl+'/statisticsimages', params)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   private extractData(res: Response) {
     let body = res.json();
 
