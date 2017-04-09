@@ -1,0 +1,46 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "version": "1.0.0-rc.2",
+    "name": "travelco"
+  },
+  "apps": [
+    {
+      "root": "app",
+      "outDir": "dist",
+      "assets": ["../assets"],
+      "index": "../index.html",
+      "main": "main.ts",
+      "tsconfig": "tsconfig.json",
+      "styles": [
+        "../assets/css/bootstrap.min.css",
+        "../assets/css/grayscale.css",
+        "../assets/css/jquery.bxslider.min.css",
+        "../assets/css/main.css"
+      ],
+      "scripts": [
+        "../assets/js/jquery.js",
+        "../assets/js/grayscale.js",
+        "../assets/js/jquery.easing.min.js",
+        "../assets/js/jquery.bxslider.min.js",
+        "../assets/js/bootstrap.min.js"
+      ]
+    }
+  ],
+  "defaults": {
+    "styleExt": "css",
+    "prefixInterfaces": false,
+    "inline": {
+      "style": false,
+      "template": false
+    },
+    "spec": {
+      "class": false,
+      "component": true,
+      "directive": true,
+      "module": false,
+      "pipe": true,
+      "service": true
+    }
+  }
+}
